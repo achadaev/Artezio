@@ -16,7 +16,7 @@ text_file = open('E://text.txt')
 binText = textToBin(text_file)
 text_file.close()
 
-image = Image.open("E://img.jpg")
+image = Image.open("E://image.jpg")
 draw = ImageDraw.Draw(image)
 width = image.size[0]
 height = image.size[1]
