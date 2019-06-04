@@ -12,9 +12,9 @@ def textToBin(text):
             binText += code
     return binText
 
-file = open('E://text.txt')
-binText = textToBin(file)
-file.close()
+text_file = open('E://text.txt')
+binText = textToBin(text_file)
+text_file.close()
 
 image = Image.open("E://img.jpg")
 draw = ImageDraw.Draw(image)
