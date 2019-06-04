@@ -1,0 +1,56 @@
+from PIL import Image
+
+image = Image.open("E://encoded.png")
+width = image.size[0]
+height = image.size[1]
+pixel = image.load()
+
+print('Enter length of a message: ')
+length = int(input())
+length *= 8
+
+def binToText(binText):
+    text = ""
+    count = 0
+    tempString = ""
+    for ch in binText:
+        tempString += ch
+        count += 1
+        if count == 8:
+            temp = int(tempString, 2)
+            tempString = chr(temp)
+            text += tempString
+            tempString = ""
+            count = 0
+    return text
+
+def decode(pixel, length):
+    binText = ""
+    count = 0
+    for i in range(width):
+        for j in range(height):
+
+            r = bin(pixel[i, j][0])
+            ch = r[len(r) - 1]
+            binText += ch
+            count += 1
+            if count == length:
+                return binText
+
+            g = bin(pixel[i, j][1])
+            ch = g[len(g) - 1]
+            binText += ch
+            count += 1
+            if count == length:
+                return binText
+
+            b = bin(pixel[i, j][2])
+            ch = b[len(b) - 1]
+            binText += ch
+            count += 1
+            if count == length:
+                return binText
+
+binText = decode(pixel, length)
+text = binToText(binText)
+print('Decoded text: ', text)
