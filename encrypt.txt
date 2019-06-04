@@ -1,0 +1,62 @@
+from PIL import Image, ImageDraw
+
+def textToBin(text):
+    binText = ""
+    for string in text:
+        for char in string:
+            code = ord(char)
+            code = bin(code)
+            code = code.replace('b', '')
+            if len(code) < 8:
+                code = code.zfill(8)
+            binText += code
+    return binText
+
+file = open('E://text.txt')
+binText = textToBin(file)
+file.close()
+
+image = Image.open("E://img.jpg")
+draw = ImageDraw.Draw(image)
+width = image.size[0]
+height = image.size[1]
+pixel = image.load()
+
+def encode(pixel):
+    length = len(binText)
+    count = 0
+    for i in range(width):
+        for j in range(height):
+
+            r = pixel[i, j][0]
+            g = pixel[i, j][1]
+            b = pixel[i, j][2]
+
+            r = bin(r)
+            r = r[:len(r) - 1] + binText[count]
+            r = int(r, 2)
+            draw.point((i, j), (r, g, b))
+            count += 1
+            if count == length:
+                return
+
+            g = bin(g)
+            g = g[:len(g) - 1] + binText[count]
+            g = int(g, 2)
+            draw.point((i, j), (r, g, b))
+            count += 1
+            if count == length:
+                return
+
+            b = bin(b)
+            b = b[:len(b) - 1] + binText[count]
+            b = int(b, 2)
+            draw.point((i, j), (r, g, b))
+            count += 1
+            if count == length:
+                return
+
+encode(pixel)
+image.save("E://encoded.png", "PNG")
+image.close()
+del draw
