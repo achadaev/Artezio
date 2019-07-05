@@ -1,0 +1,71 @@
+.skills {
+	background-color: gainsboro;
+	width: 300px;
+	height: 925px;
+}
+
+.contact_info {
+	background-color: dimgrey;
+	padding-bottom: 10px;
+}
+
+.skills > p {
+	padding-left: 15px;
+}
+
+.contact_info > h4 {
+	color: white;
+	padding-left: 15px;
+}
+
+.contact_info > p {
+	font-size: 15px;
+	color: white;
+	padding-left: 15px;
+}
+
+.main {
+	position: absolute;
+	left: 325px;
+	top: -10px;
+	width: 550px;
+}
+
+.txt {
+	font-size: 17px;
+	line-height: 5px;
+	padding-top: 10px;
+	padding-bottom: 5px;
+	padding-left: 20px;
+}
+
+.bordered_text {
+	text-align: center;
+	padding: 8px;
+	margin: 3px;
+	width: 215px;
+	position: relative;
+	background-color: silver;
+	float: left;
+}
+
+.back {
+	width: 900px;
+	background-color: #F4F7FF;
+}
+
+hr.left {
+	width: 90%;
+	margin-bottom: 20px;
+}
+
+body {
+	position: absolute;
+	left: 25%;
+	font-family: Arial, Calibri;
+}
+
+h2, h3, h4 {
+	padding-left: 15px;
+	margin-bottom: -5px;
+}
