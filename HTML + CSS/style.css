@@ -25,9 +25,9 @@
 }
 
 .main {
-	position: absolute;
+	position: relative;
 	left: 325px;
-	top: -10px;
+	top: -935px;
 	width: 550px;
 }
 
@@ -51,6 +51,8 @@
 
 .back {
 	width: 900px;
+	height: 925px;
+	margin: 0 auto;
 	background-color: #F4F7FF;
 }
 
@@ -60,12 +62,14 @@ hr.left {
 }
 
 body {
-	position: absolute;
-	left: 25%;
 	font-family: Arial, Calibri;
 }
 
 h2, h3, h4 {
 	padding-left: 15px;
 	margin-bottom: -5px;
+}
+
+html {
+	overflow: hidden;
 }
