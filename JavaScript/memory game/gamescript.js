@@ -1,5 +1,6 @@
 var opened = 0;
 var count = 16;
+var delay = false;
 var first;
 
 var dict = {
@@ -21,6 +22,11 @@ var dict = {
 	'33': '7'
 };
 
+function breakDelay()
+{
+	delay = false;
+}
+
 function hide(card0, card1)
 {
 	card0.src = 'images/hidden.jpg'
@@ -29,8 +35,8 @@ function hide(card0, card1)
 
 function del(card0, card1)
 {
-    card0.parentNode.parentNode.deleteCell(card0.parentNode.cellIndex);
-	card1.parentNode.parentNode.deleteCell(card1.parentNode.cellIndex);
+    card0.parentNode.innerHTML = '';
+	card1.parentNode.innerHTML = '';
 }
 
 function check(card0, card1)
@@ -47,28 +53,35 @@ function check(card0, card1)
 
 function show(thisCard)
 {
-	var path = 'images/' + dict[thisCard.id.slice(4)] + '.jpg';
-	thisCard.src = path;
-	opened += 1;
-	if (opened == 1)
+	if (!delay)
 	{
-		first = thisCard;
-	}
-	else if (opened == 2)
-	{
-		if (check(thisCard, first))
+		delay = true;
+		var path = 'images/' + dict[thisCard.id.slice(4)] + '.jpg';
+		thisCard.src = path;
+		opened += 1;
+		if (opened == 1)
 		{
-			setTimeout(del, 2000, thisCard, first);
-			count -= 2;
+			first = thisCard;
+			delay = false;
 		}
-		else
+		else if (opened == 2)
 		{
-			setTimeout(hide, 2000, thisCard, first);
+			if (check(thisCard, first))
+			{
+				setTimeout(del, 1000, thisCard, first);
+				setTimeout(breakDelay, 1000);
+				count -= 2;
+			}
+			else
+			{
+				setTimeout(hide, 1500, thisCard, first);
+				setTimeout(breakDelay, 1500);
+			}
+			opened = 0;
 		}
-		opened = 0;
-	}
-	if (count == 0)
+		if (count == 0)
 		{
 			document.getElementById('title').innerHTML = 'Good job!';
 		}
+	}
 }
